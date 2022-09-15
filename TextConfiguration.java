@@ -17,8 +17,8 @@ public class TextConfiguration
 
          */
 
-        Configuration ConfigA = new Configuration(6,6);
-        Configuration ConfigB = new Configuration(ConfigA.permutations);
+        Configuration ConfigA = new Configuration(4,6);
+        Configuration ConfigB = new Configuration(20,6);
         System.out.println(ConfigA);
         System.out.println(ConfigB);
     }

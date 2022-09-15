@@ -1,14 +1,18 @@
 public class Configuration {
     //Fields
     protected Permutation[] permutations;
+    protected int dieCount;
+    protected int dieSides;
 
     //Constructors
     public Configuration()
     {
-        permutations = new Permutation[30];
+        dieCount = 30;
+        dieSides = 6;
+        permutations = new Permutation[dieCount];
         for(int i = 0; i < permutations.length; i++)
         {
-            permutations[i] = new Permutation(6);
+            permutations[i] = new Permutation(dieSides);
         }
     }
     public Configuration(Permutation[] config)
@@ -18,9 +22,14 @@ public class Configuration {
         {
             permutations = config;
         }
+        dieCount = permutations.length;
+        dieSides = 2;
+        System.out.println(String.format("%d, %d",dieCount, dieSides));
     }
     public Configuration(int dieCount, int dieSides)
     {
+            this.dieCount = dieCount;
+            this.dieSides = dieSides;
             permutations = new Permutation[dieCount];
             for (int i = 0; i < permutations.length; i++) {
                 permutations[i] = new Permutation(dieSides);
@@ -41,12 +50,18 @@ public class Configuration {
     public String DisplayMethod()
     {
         StringBuilder sb = new StringBuilder();
+        sb.append("Permutation\t");
+        for(int i = 0; i < dieSides; i++)
+        {
+            sb.append(String.format("P%d\t",i + 1));
+        }
+
         for(int i = 0; i < permutations.length; i++)
         {
-            sb.append(String.format("\n Die:%d",(i + 1)));
+            sb.append(String.format("%n Die %d: ",(i + 1)));
             for(int k = 0; k < permutations[i].numbers.length; k++)
             {
-                sb.append(" ");
+                sb.append("\t");
                 sb.append(permutations[i].numbers[k] + 1);
             }
 
