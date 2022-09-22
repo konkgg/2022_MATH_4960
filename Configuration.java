@@ -23,8 +23,7 @@ public class Configuration {
             permutations = config;
         }
         dieCount = permutations.length;
-        dieSides = 2;
-        System.out.println(String.format("%d, %d",dieCount, dieSides));
+        dieSides = config[0].numbers.length;
     }
     public Configuration(int dieCount, int dieSides)
     {
@@ -64,10 +63,44 @@ public class Configuration {
                 sb.append("\t");
                 sb.append(permutations[i].numbers[k] + 1);
             }
+            sb.append("\t");
+            sb.append(String.format("RowSum: %d", getRowSum(i)));
 
+        }
+        sb.append("\n ColumnSum");
+        for(int i = 0; i < dieSides; i++)
+        {
+            sb.append(String.format("\t%d",getColumn(i)));
         }
         return sb.toString();
     }
+
+
+    /* Math methods
+
+    had to add one to each number due to permutation making pos 0 equal 0 instead of 1 and us just adding one in the display
+    */
+    public int getRowSum(int a)
+    {
+        int sum = 0;
+        for(int i = 0; i < dieSides; i++)
+        {
+            sum += permutations[a].numbers[i] + 1;
+        }
+        return sum;
+    }
+
+    public int getColumn(int a)
+    {
+        int sum = 0;
+        for(int i = 0; i < dieCount; i++)
+        {
+            sum += permutations[i].numbers[a] + 1;
+        }
+
+        return sum;
+    }
+
 
     //toString
     @Override
