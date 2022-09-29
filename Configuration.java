@@ -1,3 +1,8 @@
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+
 public class Configuration {
     //Fields
     protected Permutation[] permutations;
@@ -15,6 +20,54 @@ public class Configuration {
             permutations[i] = new Permutation(dieSides);
         }
     }
+    //Configuration object from file
+    //Current implementation seems moderately shitty
+    public Configuration(String fileName)
+    {
+        //Find number of die or number of lines within csv file
+        this.dieCount = 0; // linecount or diecount
+        try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) 
+        {
+          while (reader.readLine() != null)
+          {
+            this.dieCount++; // add one to lineCount or dieCount
+          }
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+        //Read file and generate permutations based on the value stored
+        //Find way of setting dieSides accurately a single time and compare the dieSides to the number of values in a line and close the program if they don't
+        try(FileReader fr = new FileReader(fileName);
+          BufferedReader in = new BufferedReader(fr))
+        {
+            String line = in.readLine();
+            int lineNumber = 0;
+            permutations = new Permutation[dieCount];
+            while(line != null)
+            {
+                String[] parts = line.split(",");
+                this.dieSides = parts.length;
+                permutations[lineNumber] = new Permutation(dieSides);
+                for(int i = 0; i < parts.length; i++)
+                {
+                  permutations[lineNumber].numbers[i] = Integer.parseInt(parts[i]);
+                }
+                lineNumber++;
+                line = in.readLine();
+            }
+        }
+        catch(FileNotFoundException e)
+        {
+            e.printStackTrace();
+        }
+        catch(IOException e)
+        {
+            e.printStackTrace();
+        }    
+    }
     public Configuration(Permutation[] config)
     {
         permutations = new Permutation[config.length];
@@ -23,7 +76,8 @@ public class Configuration {
             permutations = config;
         }
         dieCount = permutations.length;
-        dieSides = config[0].numbers.length;
+        dieSides = 2;
+        System.out.println(String.format("%d, %d",dieCount, dieSides));
     }
     public Configuration(int dieCount, int dieSides)
     {
@@ -61,46 +115,12 @@ public class Configuration {
             for(int k = 0; k < permutations[i].numbers.length; k++)
             {
                 sb.append("\t");
-                sb.append(permutations[i].numbers[k] + 1);
+                sb.append(permutations[i].numbers[k]);
             }
-            sb.append("\t");
-            sb.append(String.format("RowSum: %d", getRowSum(i)));
 
-        }
-        sb.append("\n ColumnSum");
-        for(int i = 0; i < dieSides; i++)
-        {
-            sb.append(String.format("\t%d",getColumn(i)));
         }
         return sb.toString();
     }
-
-
-    /* Math methods
-
-    had to add one to each number due to permutation making pos 0 equal 0 instead of 1 and us just adding one in the display
-    */
-    public int getRowSum(int a)
-    {
-        int sum = 0;
-        for(int i = 0; i < dieSides; i++)
-        {
-            sum += permutations[a].numbers[i] + 1;
-        }
-        return sum;
-    }
-
-    public int getColumn(int a)
-    {
-        int sum = 0;
-        for(int i = 0; i < dieCount; i++)
-        {
-            sum += permutations[i].numbers[a] + 1;
-        }
-
-        return sum;
-    }
-
 
     //toString
     @Override

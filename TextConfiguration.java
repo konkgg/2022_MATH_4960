@@ -17,9 +17,7 @@ public class TextConfiguration
 
          */
 
-        Configuration ConfigA = new Configuration(4,6);
-        Configuration ConfigB = new Configuration(ConfigA.permutations);
+        Configuration ConfigA = new Configuration("ConfigA.csv");
         System.out.println(ConfigA);
-        System.out.println(ConfigB);
     }
 }
