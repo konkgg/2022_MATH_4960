@@ -14,10 +14,11 @@ public class TextConfiguration
         Configuration ConfigA = new Configuration(dieCount,dieSides);
 
         System.out.println(ConfigA);
-
+       
          */
 
         Configuration ConfigA = new Configuration("ConfigA.csv");
         System.out.println(ConfigA);
+        ConfigA.FileOutputMethod();
     }
 }

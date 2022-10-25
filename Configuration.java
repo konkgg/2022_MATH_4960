@@ -1,6 +1,8 @@
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 
 public class Configuration {
@@ -101,34 +103,54 @@ public class Configuration {
 
 
     //Display Method
-        public String DisplayMethod()
+    public String DisplayMethod()
+    {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Permutation\t");
+        for(int i = 0; i < dieSides; i++)
         {
-            StringBuilder sb = new StringBuilder();
-            sb.append("Permutation\t");
-            for(int i = 0; i < dieSides; i++)
-            {
-                sb.append(String.format("P%d\t",i + 1));
-            }
-    
-            for(int i = 0; i < permutations.length; i++)
-            {
-                sb.append(String.format("%n Die %d: ",(i + 1)));
-                for(int k = 0; k < permutations[i].numbers.length; k++)
-                {
-                    sb.append("\t");
-                    sb.append(permutations[i].numbers[k] + 1);
-                }
-                sb.append("\t");
-                sb.append(String.format("RowSum: %d", getRowSum(i)));
-    
-            }
-            sb.append("\n ColumnSum");
-            for(int i = 0; i < dieSides; i++)
-            {
-                sb.append(String.format("\t%d",getColumn(i)));
-            }
-            return sb.toString();
+            sb.append(String.format("P%d\t",i + 1));
         }
+
+        for(int i = 0; i < permutations.length; i++)
+        {
+            sb.append(String.format("%n Die %d: ",(i + 1)));
+            for(int k = 0; k < permutations[i].numbers.length; k++)
+            {
+                sb.append("\t");
+                sb.append(permutations[i].numbers[k] + 1);
+            }
+            sb.append("\t");
+            sb.append(String.format("RowSum: %d \t", getRowSum(i)));
+            sb.append(String.format("RowInvertCount: %d", getDieInversions(i)));
+
+        }
+        sb.append("\n ColumnSum");
+        for(int i = 0; i < dieSides; i++)
+        {
+            sb.append(String.format("\t%d",getColumn(i)));
+        }
+        sb.append("\n InverCount");
+        for(int i = 0; i < dieSides; i++)
+        {
+            sb.append(String.format("\t%d",getPermutationInversions(i)));
+        }
+        return sb.toString();
+    }
+
+    // Maybe we should make a file name that matches the input file so that we can run many data sets for analysis
+    public void FileOutputMethod()
+    {
+        try(FileWriter wr = new FileWriter("output.txt");
+        BufferedWriter out = new BufferedWriter(wr))
+        {
+            out.write(DisplayMethod());
+        }
+        catch(IOException e)
+        {
+            e.printStackTrace();
+        }    
+    }
     /* Math methods
     had to add one to each number due to permutation making pos 0 equal 0 instead of 1 and us just adding one in the display
     */
@@ -153,7 +175,25 @@ public class Configuration {
         return sum;
     }
 
+    //Count inversions using mergeSort class
+    public int getDieInversions(int d)
+    {
+        int inversions = MergeSort.getInversions(permutations[d].numbers);
+        MergeSort.resetCount();
+        return inversions;
 
+    }
+    public int getPermutationInversions(int p)
+    {
+        int[] CurrentPermutation = new int[dieCount];
+        for(int i = 0; i < dieCount; i++)
+        {
+            CurrentPermutation[i] = permutations[i].numbers[p];
+        }
+        int inversions = MergeSort.getInversions(CurrentPermutation);
+        MergeSort.resetCount();
+        return inversions;
+    }
 
     //toString
     @Override
