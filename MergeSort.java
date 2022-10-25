@@ -72,7 +72,7 @@ public class MergeSort {
     public static void resetCount()
     {
         /*  Due to the way these methods are setup currently we must reset the count after each use
-            this could technically be avoided if i placed the get inversions within another method or if i had create another int to store the count
+            this could technically be avoided if i placed the get inversions within another method or if i create another int to store the count
             Perhaps not reseting the count after each could be useful if i wanted to count the inversions of many permutations and add them up?
         */
         count = 0;
