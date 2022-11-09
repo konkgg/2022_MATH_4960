@@ -55,7 +55,7 @@ public class Configuration {
                 permutations[lineNumber] = new Permutation(dieSides);
                 for(int i = 0; i < parts.length; i++)
                 {
-                  permutations[lineNumber].numbers[i] = Integer.parseInt(parts[i]);
+                  permutations[lineNumber].numbers[i] = (Integer.parseInt(parts[i]) - 1);
                 }
                 lineNumber++;
                 line = in.readLine();
@@ -122,6 +122,7 @@ public class Configuration {
             }
             sb.append("\t");
             sb.append(String.format("RowSum: %d \t", getRowSum(i)));
+            sb.append(String.format("RowSqaureSum: %.1f \t", getRowSquareSum(i)));
             sb.append(String.format("RowInvertCount: %d", getDieInversions(i)));
 
         }
@@ -160,6 +161,16 @@ public class Configuration {
         for(int i = 0; i < dieSides; i++)
         {
             sum += permutations[a].numbers[i] + 1;
+        }
+        return sum;
+    }
+
+    public double getRowSquareSum(int a)
+    {
+        double sum = 0;
+        for(int i = 0; i < dieSides; i++)
+        {
+            sum += (permutations[a].numbers[i] + 1) * (permutations[a].numbers[i] + 1);
         }
         return sum;
     }
