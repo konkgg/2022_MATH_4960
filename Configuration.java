@@ -111,6 +111,7 @@ public class Configuration {
         {
             sb.append(String.format("P%d\t",i + 1));
         }
+        sb.append(String.format("Sides Total: %d", getTotalSides()));
 
         for(int i = 0; i < permutations.length; i++)
         {
@@ -155,6 +156,12 @@ public class Configuration {
     /* Math methods
     had to add one to each number due to permutation making pos 0 equal 0 instead of 1 and us just adding one in the display
     */
+
+    public int getTotalSides()
+    {
+        return dieCount * dieSides;
+    }
+
     public int getRowSum(int a)
     {
         int sum = 0;

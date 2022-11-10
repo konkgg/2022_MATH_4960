@@ -20,5 +20,8 @@ public class TextConfiguration
         Configuration ConfigA = new Configuration("ConfigA.csv");
         System.out.println(ConfigA);
         ConfigA.FileOutputMethod();
+        Configuration ConfigB = new Configuration("ConfigB.csv");
+        System.out.println(ConfigB);
+        ConfigB.FileOutputMethod();
     }
 }
