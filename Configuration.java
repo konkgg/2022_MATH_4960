@@ -10,6 +10,7 @@ public class Configuration {
     protected Permutation[] permutations;
     protected int dieCount;
     protected int dieSides;
+    protected String fileName;
 
     //Constructors
     public Configuration()
@@ -26,6 +27,7 @@ public class Configuration {
     //Current implementation seems moderately shitty
     public Configuration(String fileName)
     {
+        this.fileName = fileName;
         //Find number of die or number of lines within csv file
         this.dieCount = 0; // linecount or diecount
         try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) 
@@ -143,7 +145,7 @@ public class Configuration {
     // Maybe we should make a file name that matches the input file so that we can run many data sets for analysis
     public void FileOutputMethod()
     {
-        try(FileWriter wr = new FileWriter("output.txt");
+        try(FileWriter wr = new FileWriter(fileName + " output.txt");
         BufferedWriter out = new BufferedWriter(wr))
         {
             out.write(DisplayMethod());
