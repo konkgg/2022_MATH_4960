@@ -27,5 +27,21 @@ public class Permutation
             numbers[i] = i;
         }
     }
+    public int[] getNumbers()
+    {
+        return numbers;
+    }
+    public int getNumber(int index)
+    {
+        return numbers[index];
+    }
+    public void setNumbers(int[] numbers)
+    {
+        this.numbers = numbers;
+    }
+    public void setNumber(int index, int num)
+    {
+        numbers[index] = num;
+    }
 
 }

@@ -4,6 +4,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Random;
 
 public class Configuration {
     //Fields
@@ -142,6 +143,30 @@ public class Configuration {
         return sb.toString();
     }
 
+    public void SaveConfigMethod(String name)
+    {
+        String dataSet = new String();
+        for(int i = 0; i < permutations.length; i++)
+        {
+            for(int k = 0; k < permutations[i].numbers.length; k++)
+                {
+                    dataSet += (permutations[i].numbers[k] + 1) + ",";
+                }
+            if(i<permutations.length-1)
+               dataSet += "\n";
+        }
+        try(FileWriter wr = new FileWriter(name);
+        BufferedWriter out = new BufferedWriter(wr))
+        {
+            out.write(dataSet);
+        }
+        catch(IOException e)
+        {
+            e.printStackTrace();
+        }    
+        
+    }
+
     // Maybe we should make a file name that matches the input file so that we can run many data sets for analysis
     public void FileOutputMethod()
     {
@@ -158,6 +183,30 @@ public class Configuration {
     /* Math methods
     had to add one to each number due to permutation making pos 0 equal 0 instead of 1 and us just adding one in the display
     */
+    public void randomWinner()
+    {
+        Random r = new Random();
+        int[] tempArr = new int[dieCount];
+        for(int i = 0; i < dieSides; i++)
+        {
+            // soon ill make this not require a temp Array and just do everything in the permutations
+            //create arr for shuffle
+            for(int k = 0; k < dieCount; k++)
+            {
+            tempArr[k] = i * k;
+            }
+            //shuffle
+            for(int j = tempArr.length -1; j > 0; j--)
+            {
+            int index = r.nextInt(j);
+            int num = tempArr[index];
+            tempArr[index] = tempArr[j];
+            tempArr[j] = num;
+            }
+        setPermutation(i,tempArr);
+        }
+
+    }
 
     public int getTotalSides()
     {
@@ -193,6 +242,23 @@ public class Configuration {
         }
 
         return sum;
+    }
+    public int[] getPermutation(int index)
+    {
+        int[] arr = new int[dieCount];
+        for(int i = 0; i < dieCount; i++)
+        {
+            arr[i] = permutations[index].numbers[i];
+        }
+
+        return arr;
+    }
+    public void setPermutation(int index,int[] arr)
+    {
+        for(int i = 0; i < dieCount; i++)
+        {
+            permutations[i].numbers[index] = arr[i];
+        }
     }
 
     //Count inversions using mergeSort class
