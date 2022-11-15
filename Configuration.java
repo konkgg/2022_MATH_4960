@@ -191,10 +191,8 @@ public class Configuration {
         {
             // soon ill make this not require a temp Array and just do everything in the permutations
             //create arr for shuffle
-            for(int k = 0; k < dieCount; k++)
-            {
-            tempArr[k] = i * k;
-            }
+            tempArr = getPermutation(i);
+            
             //shuffle
             for(int j = tempArr.length -1; j > 0; j--)
             {
@@ -248,7 +246,7 @@ public class Configuration {
         int[] arr = new int[dieCount];
         for(int i = 0; i < dieCount; i++)
         {
-            arr[i] = permutations[index].numbers[i];
+            arr[i] = permutations[i].numbers[index];
         }
 
         return arr;
