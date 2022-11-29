@@ -2,11 +2,13 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
-
+<?import javafx.scene.layout.VBox?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ConfigViewerController">
    <top>
@@ -15,6 +17,14 @@
             <Button fx:id="Save" mnemonicParsing="false" onAction="#handleButtonSave" text="Save" />
             <Button fx:id="buttonLoad" mnemonicParsing="false" onAction="#handleButtonLoad" text="Load" />
             <Button fx:id="buttonRandomize" mnemonicParsing="false" onAction="#handleRandomize" text="Randomize" />
+            <VBox fx:id="topVBox" prefHeight="200.0" prefWidth="100.0" spacing="6.0">
+               <children>
+                  <Label fx:id="notableProperties" text="Notable Properties" />
+                  <CheckBox fx:id="sumsEqualCheckBox" focusTraversable="false" mnemonicParsing="false" mouseTransparent="true" text="Sums Equal" />
+                  <CheckBox fx:id="savedCheckBox" focusTraversable="false" mnemonicParsing="false" mouseTransparent="true" text="Saved" />
+                  <CheckBox fx:id="sortedCheckBox" focusTraversable="false" mnemonicParsing="false" mouseTransparent="true" text="Sorted" />
+               </children>
+            </VBox>
          </children>
          <BorderPane.margin>
             <Insets left="6.0" top="6.0" />
