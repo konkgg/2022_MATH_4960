@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ConfigViewerLoadedConfigFXMLController">
+   <center>
+      <TextArea fx:id="textDisplay" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+   </center>
+   <top>
+      <AnchorPane prefHeight="80.0" prefWidth="600.0">
+         <children>
+            <VBox layoutX="478.0" prefHeight="100.0" prefWidth="122.0">
+               <children>
+                  <Label fx:id="notableProperties" text="Notable Properties" />
+                  <CheckBox fx:id="sortedCheckBox" focusTraversable="false" mnemonicParsing="false" mouseTransparent="true" text="Sorted" />
+                  <CheckBox fx:id="sumsEqualCheckBox" focusTraversable="false" mnemonicParsing="false" mouseTransparent="true" text="Sums Equal" />
+               </children>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <padding>
+                  <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
+               </padding>
+            </VBox>
+            <Label alignment="TOP_LEFT" text="View Only">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </top>
+</BorderPane>
