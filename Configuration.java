@@ -166,7 +166,7 @@ public class Configuration {
    
       for(int i = 0; i < permutations.length; i++)
       {
-         sb.append(String.format("%n Die %d: ",(i + 1)));
+         sb.append(String.format("%n\t Die %d: ",(i + 1)));
          for(int k = 0; k < permutations[i].numbers.length; k++)
          {
             sb.append("\t");
@@ -183,7 +183,6 @@ public class Configuration {
       {
          sb.append(String.format("\t%d",getColumn(i)));
       }
-      sb.append("\trowSum equality: " + rowSumIsEqual());
       sb.append("\nInverCount");
       for(int i = 0; i < dieSides; i++)
       {
