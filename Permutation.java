@@ -22,9 +22,9 @@ public class Permutation
     public Permutation(int initiator)
     {
         numbers = new int[initiator];
-
+        
         for (int i = 0; i < initiator; i++) {
-            numbers[i] = i;
+            numbers[i] = (initiator * i);
         }
     }
     public int[] getNumbers()

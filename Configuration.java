@@ -129,7 +129,7 @@ public class Configuration {
          permutations = config;
       }
       dieCount = permutations.length;
-      dieSides = 2;
+      dieSides = permutations[0].numbers.length;
       System.out.println(String.format("%d, %d",dieCount, dieSides));
    }
    public Configuration(int dieCount, int dieSides)
@@ -177,6 +177,11 @@ public class Configuration {
          sb.append(String.format("RowSqaureSum: %.1f \t", getRowSquareSum(i)));
          sb.append(String.format("RowInvertCount: %d", getDieInversions(i)));
       
+      }
+      sb.append("\n   WINRS: ");
+      for(int i = 0; i < permutations[0].numbers.length; i++)
+      {
+         sb.append(String.format("\t%d",findWinner(i)));
       }
       sb.append("\nColumnSum");
       for(int i = 0; i < dieSides; i++)
@@ -312,6 +317,21 @@ public class Configuration {
    
       return sum;
    }
+   public int findWinner(int index)
+   {
+      int[] arr = getPermutation(index);
+      int max = arr[0];
+      int out = 0;
+      
+      for(int i = 0; i < arr.length; i++)
+         if(max < arr[i])
+         {
+            max = arr[i];
+            out = i;
+         }
+      return out + 1;
+   }
+   
    public int[] getPermutation(int index)
    {
       int[] arr = new int[dieCount];
