@@ -31,7 +31,7 @@ Example Configs:
     A set mainly for Showing the randomize Function
     
   serpentine6d30.csv
-    A large Set Showing all of the functions
+    A large Set Showing all of the functions of the program
     
   firstGoDice.csv
     A set from http://www.ericharshbarger.org/dice/go_first_dice.html
