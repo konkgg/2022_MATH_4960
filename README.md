@@ -5,7 +5,7 @@
 # ABOUT THE PROJECT
 A tool for looking at sets of dice
 
-The main goal was to find a set of 6d30 similar to the firstGoDice example from: http://www.ericharshbarger.org/dice/go_first_dice.html
+The main goal was to find a set of 6d30 similar to the goFirstDice example from: http://www.ericharshbarger.org/dice/go_first_dice.html
 
 
 <!-- SETUP -->
@@ -33,6 +33,6 @@ Example Configs:
   serpentine6d30.csv
     A large Set Showing all of the functions of the program
     
-  firstGoDice.csv
+  goFirstDice.csv
     A set from http://www.ericharshbarger.org/dice/go_first_dice.html
     
