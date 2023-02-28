@@ -24,7 +24,7 @@ public class Permutation
         numbers = new int[initiator];
         
         for (int i = 0; i < initiator; i++) {
-            numbers[i] = (initiator * i);
+            numbers[i] = (numbers.length * i);
         }
     }
     public int[] getNumbers()

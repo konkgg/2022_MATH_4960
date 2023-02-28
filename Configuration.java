@@ -13,7 +13,7 @@ public class Configuration {
    protected int dieCount;
    protected int dieSides;
    protected String fileName;
-
+   public String DieAsString;
     //Constructors
    public Configuration()
    {
@@ -67,6 +67,36 @@ public class Configuration {
       {
          e.printStackTrace();
       }    
+   }
+   // generate from string
+   public Configuration(int dieCount, int dieSides, String in)
+   {
+      this.dieCount = dieCount;
+      this.dieSides = dieSides;
+      permutations = new Permutation[dieCount];
+      for (int i = 0; i < permutations.length; i++) {
+         permutations[i] = new Permutation(dieSides);
+      }
+      for(int i = 0; i < dieSides; i++)
+      {
+         for(int k = 0; k < dieCount; k++)
+         {
+            permutations[k].setNumber(i, dieCount * i + (in.charAt(k + dieCount * i) - 65));
+         }
+      }
+      updateDieAsString();
+   }
+   
+   public void updateDieAsString()
+   {
+      DieAsString = "";
+      for(int i = 0; i < dieSides; i++)
+      {
+         for(int k = 0; k < dieCount; k++)
+         {
+            DieAsString += (char)((permutations[k].getNumber(i) - dieCount * i) + 65);
+         }
+      }
    }
 
        //Configuration object from file

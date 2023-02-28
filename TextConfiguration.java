@@ -17,9 +17,9 @@ public class TextConfiguration
         */
         
 
-        Configuration ConfigA = new Configuration("ConfigA.csv");
+        Configuration ConfigA = new Configuration(3,6, "ABCCBABACCABCBAABC");
         System.out.println(ConfigA);
         ConfigA.FileOutputMethod();
-        ConfigA.sorted();
+        System.out.println(ConfigA.DieAsString);
     }
 }
