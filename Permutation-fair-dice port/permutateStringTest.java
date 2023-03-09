@@ -1,4 +1,4 @@
-public class permutateStringTest
+public class permutationsStringTest
 {
    public static void main(String[] args)
    {
