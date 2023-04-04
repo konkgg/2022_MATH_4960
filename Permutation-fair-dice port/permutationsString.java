@@ -10,32 +10,31 @@ public class permutationsString
       this.stringSet = "";
       this.stringsList = new ArrayList<String>();
    }
-   public permutationsString(String in)
+   public permutationsString(String out)
    {
-      this.stringSet = in;
+      this.stringSet = out;
       this.stringsList = new ArrayList<String>();
    }
    
    public void permute()
    {
-      permute(stringSet, "");
+      permute("", stringSet);
    }
    
    public void permute(String in, String out)
    {
-      if(in.length() == 0)
+      if(out.length() == 0)
       {
-         stringsList.add(out);
-         return;
+         stringsList.add(in);
       }
-      
-      for(int i = 0; i < in.length(); i++)
+      else
       {
-         char ch = in.charAt(i);
-         String left = in.substring(0,i);
-         String right = in.substring(i + 1);
-         String combined = left + right;
-         permute(combined, out + combined);
+      for(int i = 0; i < out.length(); i++)
+      {
+         String left = in + out.charAt(i);
+         String right = out.substring(0, i) + out.substring(i + 1);
+         permute(left, right);
+      }
       }
    }
 }
